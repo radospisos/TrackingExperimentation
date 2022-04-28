@@ -26,10 +26,12 @@ int main()
 
             auto result = tracker->update(frame);
             if (result.success()) {
-                std::cout << "Up: " << result.up() << ". Down: " << result.down() << ". Left: " << result.left()
-                          << ". Right: " << result.right() << std::endl;
+                std::string controller_label = "Up: " + std::to_string(result.up()) +
+                        ". Down: " + std::to_string(result.down()) + ". Left: " +
+                        std::to_string(result.left()) + ". Right: " + std::to_string(result.right());
+                cv::putText(frame, controller_label, cv::Point(10, 40), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 5, cv::LINE_8, false);
             } else {
-                std::cout << "Object was lost" << std::endl;
+                cv::putText(frame, "[Object was lost]", cv::Point(10, 40), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 5, cv::LINE_8, false);
             }
 
             // Vizualization.
