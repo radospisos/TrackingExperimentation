@@ -13,7 +13,7 @@ class Tracker {
 public:
     virtual ~Tracker() = default;
 
-    virtual void init(const cv::Rect2d &init_bb, const cv::Mat &init_frame, int frameW, int frameH) = 0;
+    virtual void init(const cv::Rect2d &init_bb, const cv::Mat &init_frame) = 0;
     virtual TrackingResult update(const cv::Mat& frame) = 0;
 };
 

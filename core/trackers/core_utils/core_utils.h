@@ -17,9 +17,9 @@ namespace core_utils {
         double vertical_top_point = (frameH - h) / 2;
 
         if (x < horizontal_left_point) left = true;
-        if (x > (horizontal_left_point + w)) right = true;
+        if (x > horizontal_left_point) right = true;
         if (y < vertical_top_point) up = true;
-        if (y > (vertical_top_point + h)) down = true;
+        if (y > vertical_top_point) down = true;
 
         return CorrectionController::create(up, down, left, right);
     }

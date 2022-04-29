@@ -14,7 +14,7 @@ int main()
 
         // Creating initBB and initializing of the tracker.
         std::unique_ptr<Tracker> tracker = tracker_creator::create(constants::TRACKER_NAME);
-        tracker->init(roi, init_frame, roi.width, roi.height);
+        tracker->init(roi, init_frame);
 
 
         // Loop through all frames with object tracking.
