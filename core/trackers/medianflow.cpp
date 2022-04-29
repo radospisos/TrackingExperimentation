@@ -8,9 +8,10 @@ MedianFlow::MedianFlow() {
     tracker_ = cv::TrackerMedianFlow::create();
 }
 
-void MedianFlow::init(const cv::Rect2d &init_bb, const cv::Mat &init_frame, int frameW, int frameH) {
-    this->frame_width_ = frameW;
-    this->frame_height_ = frameH;
+void MedianFlow::init(const cv::Rect2d &init_bb, const cv::Mat &init_frame) {
+    frame_width_ = init_frame.size().width;
+    frame_height_ = init_frame.size().height;
+    if(init_bb.width > frame_width_ || init_bb.height > frame_height_) throw std::invalid_argument(fatal_errors::BB_FRAME_SIZE_ERR);
 
     tracker_->init(init_frame, init_bb);
     current_bb_ = init_bb;
@@ -18,6 +19,7 @@ void MedianFlow::init(const cv::Rect2d &init_bb, const cv::Mat &init_frame, int 
 
 TrackingResult MedianFlow::update(const cv::Mat &frame) {
     bool success = tracker_->update(frame, current_bb_);
+    if(frame.size().width != frame_width_ || frame.size().height != frame_height_) throw std::invalid_argument(fatal_errors::FRAME_FRAME_SIZE_ERR);
 
     if(success) {
         cv::Mat current_frame = frame;

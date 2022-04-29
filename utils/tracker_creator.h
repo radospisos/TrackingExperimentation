@@ -23,7 +23,7 @@ namespace tracker_creator {
         if(trackers.find(tracker_type) != trackers.end()) {
             return std::move(trackers.at(tracker_type));
         }
-        else throw std::out_of_range("Fatal Error! This type of core is not supported.");
+        else throw std::out_of_range("Fatal Error! This type of tracker is not supported.");
     }
 }
 

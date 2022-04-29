@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.22)
 set(CMAKE_CXX_STANDARD 17)
 project(exp4)
 
+file(GLOB_RECURSE core_src "core/*.cpp")
+file(GLOB_RECURSE core_hdr "core/*.h")
+file(GLOB_RECURSE utils_hdr "utils/*.h")
+file(GLOB_RECURSE unit_tests "tests/*.cpp")
+file(GLOB main "main.cpp")
+
 set(OpenCV_DIR "/Users/rodion/Documents/opencv_cpp/build_opencv")
 find_package(OpenCV REQUIRED)
 find_package(Iconv REQUIRED)
@@ -9,6 +15,16 @@ find_package(Iconv REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories("./")
 
-add_executable(exp4 main.cpp utils/constants.h core/trackers/medianflow.cpp core/trackers/medianflow.h core/trackers/kcf.cpp core/trackers/kcf.h core/tracker.h utils/tracker_type.h utils/tracker_creator.h core/result_structures/tracking_result.cpp core/result_structures/tracking_result.h core/result_structures/correction_controller.cpp core/result_structures/correction_controller.h core/trackers/core_utils/core_utils.h)
+add_executable(Main ${core_src} ${core_hdr} ${utils_hdr} ${main})
 
-target_link_libraries(exp4 ${OpenCV_LIBRARIES})
+include(GoogleTest)
+find_package(GTest REQUIRED)
+include_directories(${GMOCK_INCLUDE_DIR})
+
+add_executable(Tests ${unit_tests} ${core_src} ${core_hdr} ${utils_hdr} tests/CoreUtilsTest.cpp tests/CoreUtilsTest.cpp tests/KCFTest.cpp tests/MedianFlowTest.cpp)
+set(GMOCK_L "/Users/rodion/Downloads/googletest/googlemock/include/gmock/")
+target_link_libraries(Tests GTest::GTest GTest::Main /usr/local/lib/libgmock.a /usr/local/lib/libgmock_main.a)
+target_link_libraries(Tests ${OpenCV_LIBRARIES})
+
+target_link_libraries(Main ${OpenCV_LIBRARIES})
+gtest_discover_tests(Tests)
