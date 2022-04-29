@@ -26,9 +26,8 @@ int main()
 
             auto result = tracker->update(frame);
             if (result.success()) {
-                std::string controller_label = "Up: " + std::to_string(result.up()) +
-                        ". Down: " + std::to_string(result.down()) + ". Left: " +
-                        std::to_string(result.left()) + ". Right: " + std::to_string(result.right());
+                std::string controller_label = "Delta X: " + std::to_string(result.dx()) +
+                        ". Delta Y: " + std::to_string(result.dy());
                 cv::putText(frame, controller_label, cv::Point(10, 40), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 5, cv::LINE_8, false);
             } else {
                 cv::putText(frame, "[Object was lost]", cv::Point(10, 40), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 5, cv::LINE_8, false);

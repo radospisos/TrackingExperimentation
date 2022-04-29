@@ -8,6 +8,7 @@
 #include <opencv2/tracking/tracking.hpp>
 #include <core/result_structures/tracking_result.h>
 #include <core/trackers/core_utils/core_utils.h>
+#include <core/trackers/core_utils/errors.h>
 
 class Tracker {
 public:
