@@ -21,10 +21,8 @@ public:
     bool success() const;
     cv::Rect2d bb() const;
     CorrectionController controller() const;
-    bool up() const;
-    bool down() const;
-    bool left() const;
-    bool right() const;
+    double dx() const;
+    double dy() const;
 
 private:
     TrackingResult(bool success, const std::optional<cv::Rect2d>& bb, const std::optional<CorrectionController>& controller);

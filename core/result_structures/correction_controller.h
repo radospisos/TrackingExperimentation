@@ -6,29 +6,21 @@
 #define EXP4_CORRECTION_CONTROLLER_H
 
 #include <string>
-#include <stdexcept>
 
 namespace fatal_errors {
-    static const std::string AMBIGUOUS_CONTROLLER_RESULTS = "Controller result is ambiguous.";
+    static const std::string AMBIGUOUS_CONTROLLER_RESULTS = "Ambiguous Controller result.";
 }
 
 class CorrectionController {
 public:
-    static CorrectionController create(bool up, bool down, bool left, bool right);
+    CorrectionController(double dx, double dy);
 
-    bool up() const;
-    bool down() const;
-    bool left() const;
-    bool right() const;
+    double dx() const;
+    double dy() const;
 
 private:
-    CorrectionController(bool up, bool down, bool left, bool right);
-
-private:
-    bool up_;
-    bool down_;
-    bool left_;
-    bool right_;
+    double dx_;
+    double dy_;
 };
 
 

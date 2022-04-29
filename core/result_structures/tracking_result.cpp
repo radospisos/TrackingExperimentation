@@ -28,19 +28,11 @@ CorrectionController TrackingResult::controller() const {
     if(!success_) throw std::domain_error(fatal_errors::WRONG_FIELD_ACCESS);
     return controller_.value();
 }
-bool TrackingResult::up() const {
+double TrackingResult::dx() const {
     if(!controller_.has_value()) throw std::domain_error(fatal_errors::WRONG_FIELD_ACCESS);
-    return controller_.value().up();
+    return controller_.value().dx();
 }
-bool TrackingResult::down() const {
+double TrackingResult::dy() const {
     if(!controller_.has_value()) throw std::domain_error(fatal_errors::WRONG_FIELD_ACCESS);
-    return controller_.value().down();
-}
-bool TrackingResult::left() const {
-    if(!controller_.has_value()) throw std::domain_error(fatal_errors::WRONG_FIELD_ACCESS);
-    return controller_.value().left();
-}
-bool TrackingResult::right() const {
-    if(!controller_.has_value()) throw std::domain_error(fatal_errors::WRONG_FIELD_ACCESS);
-    return controller_.value().right();
+    return controller_.value().dy();
 }

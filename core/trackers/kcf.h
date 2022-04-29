@@ -7,11 +7,6 @@
 
 #include <core/tracker.h>
 
-namespace fatal_errors {
-    static const std::string BB_FRAME_SIZE_ERR = "Sizes of bounding box and frame are ambiguous.";
-    static const std::string FRAME_FRAME_SIZE_ERR = "Sizes of current frame and initial frame are ambiguous.";
-}
-
 class KCF : public Tracker {
 public:
     KCF();

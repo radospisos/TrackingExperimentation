@@ -15,7 +15,7 @@ find_package(Iconv REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories("./")
 
-add_executable(Main ${core_src} ${core_hdr} ${utils_hdr} ${main})
+add_executable(Main ${core_src} ${core_hdr} ${utils_hdr} ${main} core/trackers/core_utils/errors.h)
 
 include(GoogleTest)
 find_package(GTest REQUIRED)
