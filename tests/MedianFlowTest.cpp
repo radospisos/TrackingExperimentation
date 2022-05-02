@@ -28,8 +28,4 @@ TEST_F(MedianFlowTest, MFupdating) {
     cv::Rect2d rect = cv::Rect2d(1, 1, 600, 500);
     cv::Mat frame = cv::Mat(800, 900, CV_64FC1);
     mf.init(rect, frame);
-    //EXPECT_THROW(auto result = mf.update(cv::Mat(700, 900, CV_64F)), std::invalid_argument);
-    //EXPECT_THROW(mf.update(cv::Mat(800, 300, CV_64F)), std::invalid_argument);
-    //EXPECT_THROW(mf.update(cv::Mat(500, 1000, CV_64F)), std::invalid_argument);
-    //EXPECT_NO_THROW(mf.update(cv::Mat(800, 900, CV_64F)));
 }
