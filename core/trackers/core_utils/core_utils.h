@@ -8,9 +8,14 @@
 #include <opencv2/opencv.hpp>
 #include <core/result_structures/correction_controller.h>
 
+namespace utils_errors {
+    static const std::string BB_FR_SIZE_ERR = "Bounding Box and frame sizes are ambiguous.";
+}
+
 namespace core_utils {
     static CorrectionController get_controller(const cv::Rect2d& bb, const double& frameW, const double& frameH) {
         double x = bb.x, y = bb.y, w = bb.width, h = bb.height;
+        if(w > frameW || y > frameH) throw std::invalid_argument(utils_errors::BB_FR_SIZE_ERR);
         double dx = 0, dy = 0;
 
         double fr_center_x = frameW / 2;

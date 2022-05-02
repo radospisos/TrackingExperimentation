@@ -8,10 +8,16 @@ class CoreUtilsTest : public ::testing::Test {
 
 };
 
-TEST_F(CoreUtilsTest, GetControllerExceptionCheck) {
+TEST_F(CoreUtilsTest, GetControllerExceptionCheck1) {
     cv::Rect2d rect = cv::Rect2d(1, 2, 50, 60);
     double frameW = 100, frameH = 100;
     EXPECT_NO_THROW(core_utils::get_controller(rect, frameW, frameH));
+}
+
+TEST_F(CoreUtilsTest, GetControllerExceptionCheck2) {
+    cv::Rect2d rect = cv::Rect2d(1, 2, 110, 110);
+    double frameW = 100, frameH = 100;
+    EXPECT_THROW(core_utils::get_controller(rect, frameW, frameH), std::invalid_argument);
 }
 
 TEST_F(CoreUtilsTest, GetControllerValuesCheck1) {
