@@ -7,18 +7,18 @@
 #include <gtest/gtest.h>
 #include <core/result_structures/tracking_result.h>
 
-class KCFTest : public ::testing::Test {
+class TrackingResultTest : public ::testing::Test {
 
 };
 
-TEST_F(KCFTest, TrackingResultCreation) {
+TEST_F(TrackingResultTest, TrackingResultCreation) {
     CorrectionController controller;
     cv::Rect2d rect2D = cv::Rect2d(1, 2, 10, 10);
     EXPECT_NO_THROW(auto result = TrackingResult::success(rect2D, controller));
     EXPECT_NO_THROW(auto result = TrackingResult::fail());
 }
 
-TEST_F(KCFTest, SuccessFieldAccess) {
+TEST_F(TrackingResultTest, SuccessFieldAccess) {
     CorrectionController controller;
     cv::Rect2d rect2D = cv::Rect2d(1, 2, 10, 10);
     auto result = TrackingResult::success(rect2D, controller);
@@ -29,7 +29,7 @@ TEST_F(KCFTest, SuccessFieldAccess) {
     EXPECT_TRUE(result.success());
 }
 
-TEST_F(KCFTest, FailFieldAccess) {
+TEST_F(TrackingResultTest, FailFieldAccess) {
     auto result = TrackingResult::fail();
     EXPECT_THROW(auto controller = result.controller(), std::domain_error);
     EXPECT_THROW(auto rect = result.bb(), std::domain_error);

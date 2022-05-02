@@ -4,11 +4,11 @@
 #include <gtest/gtest.h>
 #include <core/result_structures/correction_controller.h>
 
-class KCFTest : public ::testing::Test {
+class CorrectionControllerTest : public ::testing::Test {
 
 };
 
-TEST_F(KCFTest, ControllerCreation) {
+TEST_F(CorrectionControllerTest, ControllerCreation) {
     CorrectionController controller;
     EXPECT_NO_THROW(controller = CorrectionController(-1.0, -1.0));
     EXPECT_NO_THROW(controller = CorrectionController(-1.0, 0.0));
@@ -21,7 +21,7 @@ TEST_F(KCFTest, ControllerCreation) {
     EXPECT_NO_THROW(controller = CorrectionController(1.0, 1.0));
 }
 
-TEST_F(KCFTest, FieldAccess1) {
+TEST_F(CorrectionControllerTest, FieldAccess1) {
     CorrectionController controller;
     ASSERT_EQ(controller.dx(), 0.0);
     ASSERT_EQ(controller.dy(), 0.0);
