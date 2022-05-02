@@ -13,6 +13,7 @@ namespace fatal_errors {
 
 class CorrectionController {
 public:
+    CorrectionController();
     CorrectionController(double dx, double dy);
 
     double dx() const;

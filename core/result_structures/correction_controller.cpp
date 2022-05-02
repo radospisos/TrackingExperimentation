@@ -4,6 +4,11 @@
 
 #include "correction_controller.h"
 
+CorrectionController::CorrectionController() {
+    dx_ = 0.0;
+    dy_ = 0.0;
+}
+
 CorrectionController::CorrectionController(double dx, double dy) {
     dx_ = dx;
     dy_ = dy;

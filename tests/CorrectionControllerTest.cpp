@@ -4,26 +4,31 @@
 #include <gtest/gtest.h>
 #include <core/result_structures/correction_controller.h>
 
-class KCFTest : public ::testing::Test {
+class CorrectionControllerTest : public ::testing::Test {
 
 };
 
-TEST_F(KCFTest, ControllerCreation) {
-    CorrectionController controller = CorrectionController::create(false, false, false, false);
-    EXPECT_NO_THROW(controller = CorrectionController::create(true, false, true, false));
-    EXPECT_NO_THROW(controller = CorrectionController::create(true, false, false, true));
-    EXPECT_NO_THROW(controller = CorrectionController::create(false, true, true, false));
-    EXPECT_NO_THROW(controller = CorrectionController::create(false, true, false, true));
-    EXPECT_NO_THROW(controller = CorrectionController::create(true, false, false, false));
-    EXPECT_NO_THROW(controller = CorrectionController::create(false, true, false, false));
-    EXPECT_NO_THROW(controller = CorrectionController::create(false, false, true, false));
-    EXPECT_NO_THROW(controller = CorrectionController::create(false, false, false, true));
+TEST_F(CorrectionControllerTest, ControllerCreation) {
+    CorrectionController controller;
+    EXPECT_NO_THROW(controller = CorrectionController(-1.0, -1.0));
+    EXPECT_NO_THROW(controller = CorrectionController(-1.0, 0.0));
+    EXPECT_NO_THROW(controller = CorrectionController(-1.0, 1.0));
+    EXPECT_NO_THROW(controller = CorrectionController(0.0, -1.0));
+    EXPECT_NO_THROW(controller = CorrectionController(0.0, 0.0));
+    EXPECT_NO_THROW(controller = CorrectionController(0.0, 1.0));
+    EXPECT_NO_THROW(controller = CorrectionController(1.0, -1.0));
+    EXPECT_NO_THROW(controller = CorrectionController(1.0, 0.0));
+    EXPECT_NO_THROW(controller = CorrectionController(1.0, 1.0));
+}
 
-    EXPECT_THROW(controller = CorrectionController::create(true, true, true, true), std::invalid_argument);
-    EXPECT_THROW(controller = CorrectionController::create(true, true, false, true), std::invalid_argument);
-    EXPECT_THROW(controller = CorrectionController::create(true, true, true, false), std::invalid_argument);
-    EXPECT_THROW(controller = CorrectionController::create(true, true, false, false), std::invalid_argument);
-    EXPECT_THROW(controller = CorrectionController::create(true, false, true, true), std::invalid_argument);
-    EXPECT_THROW(controller = CorrectionController::create(false, true, true, true), std::invalid_argument);
-    EXPECT_THROW(controller = CorrectionController::create(false, false, true, true), std::invalid_argument);
+TEST_F(CorrectionControllerTest, FieldAccess1) {
+    CorrectionController controller;
+    ASSERT_EQ(controller.dx(), 0.0);
+    ASSERT_EQ(controller.dy(), 0.0);
+}
+
+TEST_F(KCFTest, FieldAccess2) {
+    CorrectionController controller{25.0, -27.0};
+    ASSERT_EQ(controller.dx(), 25.0);
+    ASSERT_EQ(controller.dy(), -27.0);
 }
