@@ -9,7 +9,7 @@ class KCFTest : public ::testing::Test {
 };
 
 TEST_F(KCFTest, ControllerCreation) {
-    CorrectionController controller = CorrectionController::create(false, false, false, false);
+    /*CorrectionController controller = CorrectionController::create(false, false, false, false);
     EXPECT_NO_THROW(controller = CorrectionController::create(true, false, true, false));
     EXPECT_NO_THROW(controller = CorrectionController::create(true, false, false, true));
     EXPECT_NO_THROW(controller = CorrectionController::create(false, true, true, false));
@@ -25,5 +25,5 @@ TEST_F(KCFTest, ControllerCreation) {
     EXPECT_THROW(controller = CorrectionController::create(true, true, false, false), std::invalid_argument);
     EXPECT_THROW(controller = CorrectionController::create(true, false, true, true), std::invalid_argument);
     EXPECT_THROW(controller = CorrectionController::create(false, true, true, true), std::invalid_argument);
-    EXPECT_THROW(controller = CorrectionController::create(false, false, true, true), std::invalid_argument);
+    EXPECT_THROW(controller = CorrectionController::create(false, false, true, true), std::invalid_argument);*/
 }
