@@ -22,9 +22,6 @@ TrackingResult MedianFlow::update(const cv::Mat &frame) {
     if(frame.size().width != frame_width_ || frame.size().height != frame_height_) throw std::invalid_argument(fatal_errors::FRAME_FRAME_SIZE_ERR);
 
     if(success) {
-        cv::Mat current_frame = frame;
-        cv::rectangle(current_frame, current_bb_, cv::Scalar(0, 255, 0), 1, cv::LINE_8, 0);
-
         auto controller = core_utils::get_controller(current_bb_, frame_width_, frame_height_);
         return TrackingResult::success(current_bb_, controller);
     }
