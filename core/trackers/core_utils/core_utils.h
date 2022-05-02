@@ -11,16 +11,15 @@
 namespace core_utils {
     static CorrectionController get_controller(const cv::Rect2d& bb, const double& frameW, const double& frameH) {
         double x = bb.x, y = bb.y, w = bb.width, h = bb.height;
-        bool up = false, down = false, left = false, right = false;
         double dx = 0, dy = 0;
 
-        double horizontal_left_point = (frameW - w) / 2;
-        double vertical_top_point = (frameH - h) / 2;
+        double fr_center_x = frameW / 2;
+        double fr_center_y = frameH / 2;
+        double bb_center_x = x + (w / 2);
+        double bb_center_y = y + (h / 2);
 
-        if (x < horizontal_left_point) dx = -(horizontal_left_point - x);
-        if (x > horizontal_left_point) dx = (x - horizontal_left_point);
-        if (y < vertical_top_point) dy = -(vertical_top_point - y);
-        if (y > vertical_top_point) dy = (y - vertical_top_point);
+        dx = bb_center_x - fr_center_x;
+        dy = bb_center_y - fr_center_y;
 
         return CorrectionController{dx, dy};
     }
