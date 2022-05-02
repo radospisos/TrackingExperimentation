@@ -27,7 +27,7 @@ TEST_F(CorrectionControllerTest, FieldAccess1) {
     ASSERT_EQ(controller.dy(), 0.0);
 }
 
-TEST_F(KCFTest, FieldAccess2) {
+TEST_F(CorrectionControllerTest, FieldAccess2) {
     CorrectionController controller{25.0, -27.0};
     ASSERT_EQ(controller.dx(), 25.0);
     ASSERT_EQ(controller.dy(), -27.0);
